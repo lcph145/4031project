@@ -39,6 +39,7 @@ int main() {
 
 	mem_obj.allocateblock();
 	BPTree node;
+	std::getline(inFile, str); //skip first line
 	while (std::getline(inFile, str)) {
 		Record record;
 		istringstream stream(str);
@@ -51,16 +52,16 @@ int main() {
 		cout << address<< "\n";
 	}
 
-	cout << " Expt 1 answers " << "\n";
-	cout << " Memory Pool Size in MB is " << mem_obj.getSizeofDB() << "\n";
-	cout << " The block size is " << mem_obj.getBlkSize() << "\n";
+	cout << "Expt 1 answers " << "\n";
+	cout << "Memory Pool Size in MB is " << mem_obj.getSizeofDB() << "\n";
+	cout << "The block size is " << mem_obj.getBlkSize() << "\n";
 	cout << "The number of blocks allocated is " << mem_obj.getnumberofBlocks() << "\n";
 	cout << "Current memory used= Blocks used multiplied by blocksize= " << (mem_obj.getBlkSize()) * mem_obj.getnumberofBlocks() << "\n" << '\n';
 
 
 	inFile.close();
 
-
+	cout << "\n";
 	node.display(node.getRoot());
 	cout << " Expt 2 answers " << "\n";
 	cout << " The height of tree is " << node.returnheight() << "\n";
@@ -73,6 +74,7 @@ int main() {
 		cout << " " << *i;
 	}
 	vec = node.returnfirstchild();
+	cout << "\n";
 	cout << " The content of first child node is";
 	for (auto i = vec.begin(); i < vec.end(); i++)
 	{
