@@ -35,17 +35,18 @@ int main() {
 	std::string str;
 
 	mem_obj.allocateblock();
-
+	BPTree node;
 	while (std::getline(inFile, str)) {
 		Record record;
 		istringstream stream(str);
 
 		stream >> record.tconst >> record.averageRating >> record.numVotes;
 		cout << record.tconst << " has " << record.averageRating << " plus " << record.numVotes << "\n";
-
+		node.insertValue(record.numVotes);
 		cout << mem_obj.addRecord(&record, sizeof(record)) << "\n";
 	}
 
+	cout << " Expt 1 answers " << "\n";
 	cout << " Memory Pool Size in MB is " << mem_obj.getSizeofDB() << "\n";
 	cout << " The block size is " << mem_obj.getBlkSize() << "\n";
 	cout << "The number of blocks allocated is " << mem_obj.getnumberofBlocks() << "\n";
@@ -54,20 +55,13 @@ int main() {
 
 	inFile.close();
 
-		BPTree node;
-		node.insertValue(5);
-		node.insertValue(15);
-		node.insertValue(25);
-		node.insertValue(35);
-		node.insertValue(45);
-		node.insertValue(55);
-		node.insertValue(40);
-		node.insertValue(30);
-		node.insertValue(20);
-		node.display(node.getRoot());
+		
+		
+	node.display(node.getRoot());
 
-		node.remove(5);
-		node.display(node.getRoot());
+
+		//node.remove(5);
+		
 
 	
 
