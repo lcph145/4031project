@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <vector>
 #include "mem_pool.h"
 #include "bpp.h"
 
@@ -20,6 +21,8 @@ int main() {
 	int numVotes = 0;
 	float averageRating = 0;
 	string tconst = " ";
+	void* address;
+	vector <int>vec;
 
 	ifstream inFile;
 	inFile.open("Project 1 Data - Copy.tsv");
@@ -42,8 +45,10 @@ int main() {
 
 		stream >> record.tconst >> record.averageRating >> record.numVotes;
 		cout << record.tconst << " has " << record.averageRating << " plus " << record.numVotes << "\n";
-		node.insertValue(record.numVotes);
-		cout << mem_obj.addRecord(&record, sizeof(record)) << "\n";
+	
+		address = mem_obj.addRecord(&record, sizeof(record));
+		node.insertValue(record.numVotes, address);
+		cout << address<< "\n";
 	}
 
 	cout << " Expt 1 answers " << "\n";
@@ -55,17 +60,30 @@ int main() {
 
 	inFile.close();
 
-		
+
 	node.display(node.getRoot());
 	cout << " Expt 2 answers " << "\n";
-	cout << "the height of tree is " << node.returnheight()<< "\n";
-	cout << " The maximum number of keys that can be stored per node is " << node.returnMax()<< "\n";
-	cout << " The number of nodes used is: " <<node.countNodes(node.getRoot(), 1);
-		//node.remove(5);
-		
-
+	cout << " The height of tree is " << node.returnheight() << "\n";
+	cout << " The maximum number of keys that can be stored per node is " << node.returnMax() << "\n";
+	cout << " The number of nodes used is: " << node.countNodes(node.getRoot(), 1)<< "\n";
+	cout << " The content of root node is";
+	vec = node.returnRootvalue();
+	for (auto i = vec.begin(); i < vec.end(); i++)
+	{
+		cout << " " << *i;
+	}
+	vec = node.returnfirstchild();
+	cout << " The content of first child node is";
+	for (auto i = vec.begin(); i < vec.end(); i++)
+	{
+		cout << " " << *i;
+	}
 	
+		//node.remove(5);
 
 
-	return 0;
+
+
+
+		return 0;
 }

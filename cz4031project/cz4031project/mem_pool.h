@@ -8,9 +8,9 @@ private:
     void* currpointer;
     std::size_t memPoolInitial;
     std::size_t memPoolLeft;
-    std::size_t blkSize;
-    std::size_t numBlockInitial;
-    std::size_t numBlockUsed;
+    int blkSize;
+    int numBlockInitial;
+    int numBlockUsed;
     void* startpointer;
     //  std::size_t memPoolUsed;
     void* endpointer;

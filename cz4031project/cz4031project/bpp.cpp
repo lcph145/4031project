@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include "bpp.h"
+#include <vector>
 using namespace std;
 const int MAX = 5;
 
@@ -12,6 +13,7 @@ Node::Node()
 {
 	key = new int[MAX];
 	ptr = new Node * [MAX + 1];
+	dbptr = new void* [MAX + 1];
 }
 
 // Initialise the BPTree Node
@@ -75,7 +77,7 @@ void BPTree::findValue(int x)
 
 // Function to implement the Insert
 // Operation in B+ Tree
-void BPTree::insertValue(int x)
+void BPTree::insertValue(int x,void* address)
 {
 	// If root is null then return
 	// Check for null root, and create a new one
@@ -84,7 +86,9 @@ void BPTree::insertValue(int x)
 		rootNode = new Node;
 		rootNode->IS_LEAF = true;
 		rootNode->key[0] = x;
+		rootNode->dbptr[0] = address;
 		rootNode->size = 1;
+		
 	}
 
 	// Traverse the B+ Tree
@@ -126,10 +130,12 @@ void BPTree::insertValue(int x)
 			// For every key above i, shift it forward
 			for (int j = cursor->size; j > i; j--) {
 				cursor->key[j] = cursor->key[j - 1];
+				cursor->dbptr[j] = cursor->dbptr[j - 1];
 			}
 
 			// Start inserting the value in position i
 			cursor->key[i] = x;
+			cursor->dbptr[i] = address;
 			cursor->size++;
 			cursor->ptr[cursor->size] = cursor->ptr[cursor->size - 1];
 			cursor->ptr[cursor->size - 1] = NULL;
@@ -142,10 +148,12 @@ void BPTree::insertValue(int x)
 
 			// Create virtual node with extra capacity for new node
 			int virtualNode[MAX + 1];
+			void* virtualptr[MAX+1];
 
 			// Transfer everything from the current leaf node to virtual node
 			for (int i = 0; i < MAX; i++) {
 				virtualNode[i] = cursor->key[i];
+				virtualptr[i] = cursor->dbptr[i];
 			}
 			int i = 0, j;
 
@@ -157,10 +165,12 @@ void BPTree::insertValue(int x)
 			// For every key above i, shift it forward
 			for (int j = MAX + 1; j > i; j--) {
 				virtualNode[j] = virtualNode[j - 1];
+				virtualptr[j] = virtualptr[j - 1];
 			}
 
 			// Initialize the new leaf node and split old node
 			virtualNode[i] = x;
+			virtualptr[i] = address;
 			newLeaf->IS_LEAF = true;
 
 			cursor->size = (MAX + 1) / 2;
@@ -175,11 +185,13 @@ void BPTree::insertValue(int x)
 			// Give the virtual node's keys to cursor node
 			for (i = 0; i < cursor->size; i++) {
 				cursor->key[i] = virtualNode[i];
+				cursor->dbptr[i] = virtualptr[i];
 			}
 
 			// Give the virtual node's keys to new leaf node
 			for (i = 0, j = cursor->size; i < newLeaf->size; i++, j++) {
 				newLeaf->key[i] = virtualNode[j];
+				newLeaf->dbptr[i] = virtualptr[j];
 			}
 
 			// If cursor is the root node
@@ -387,6 +399,29 @@ int BPTree::returnheight() {
 int BPTree::returnMax() {
 	return MAX; 
 }
+
+
+vector<int> BPTree::returnRootvalue() {
+	vector<int> vec{};
+	int* curr= rootNode->key;
+	int size = rootNode->size;
+	for (int i = 0;i < rootNode->size;i++) {
+		vec.insert(vec.begin(), rootNode->key[i]);
+	}
+	return vec;
+}
+
+vector<int> BPTree::returnfirstchild() {
+	vector<int> vec{};
+	Node* cursor = rootNode->ptr[0];
+	int size = cursor->size;
+	for (int i = 0;i < cursor->size;i++) {
+		vec.insert(vec.begin(), cursor->key[i]);
+	}
+	return vec;
+}
+
+
 // Print the tree
 void BPTree::display(Node* cursor) {
 	if (cursor != NULL) {

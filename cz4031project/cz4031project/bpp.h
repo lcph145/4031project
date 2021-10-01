@@ -3,12 +3,14 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <vector>;
 
 class Node {
 	bool IS_LEAF;
 	int* key, size;
 	Node** ptr;
 	friend class BPTree;
+	void** dbptr;
 
 public:
 	Node();
@@ -26,9 +28,11 @@ public:
 	int getheight(Node* cursor);
 	int returnheight();
 	int returnMax();
+	std::vector<int> returnRootvalue();
 	int returnnumnodes();
+	std::vector<int> returnfirstchild();
 	void findValue(int);
-	void insertValue(int);
+	void insertValue(int,void*);
 	void display(Node*);
 	void remove(int);
 	Node* getRoot();
