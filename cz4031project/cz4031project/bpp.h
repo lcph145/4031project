@@ -32,4 +32,5 @@ public:
 	void display(Node*);
 	void remove(int);
 	Node* getRoot();
+	int countNodes(Node* cursor, int count);
 };

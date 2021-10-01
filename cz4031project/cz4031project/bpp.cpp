@@ -348,6 +348,26 @@ Node* BPTree::searchParent(Node* cursor,
 }
 
 
+int BPTree::countNodes(Node* cursor, int count) {
+	if ((cursor->IS_LEAF == true)&&(cursor!=nullptr)) {
+		count = count + 1;
+		return count;
+	}
+
+
+	else if((cursor->IS_LEAF == false) && (cursor != nullptr)){
+		for (int i = 0;i < cursor->size + 1;i++) {
+			cursor = cursor->ptr[i];
+			count++;
+			count = countNodes(cursor, count) + count;
+			return count;
+		}
+
+	}
+
+}
+
+
 int BPTree::getheight(Node* cursor) {
 	if (cursor->IS_LEAF == false) {
 		return getheight(cursor->ptr[0]) + 1;

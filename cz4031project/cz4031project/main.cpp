@@ -58,9 +58,9 @@ int main() {
 		
 	node.display(node.getRoot());
 	cout << " Expt 2 answers " << "\n";
-	cout << "the height of tree is " << node.returnheight();
+	cout << "the height of tree is " << node.returnheight()<< "\n";
 	cout << " The maximum number of keys that can be stored per node is " << node.returnMax()<< "\n";
-
+	cout << " The number of nodes used is: " <<node.countNodes(node.getRoot(), 1);
 		//node.remove(5);
 		
 
