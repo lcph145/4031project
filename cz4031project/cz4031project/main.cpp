@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-
+#include "bpp.cpp"
 #include "mem_pool.h"
 
 using namespace std;
@@ -54,7 +54,22 @@ int main() {
 
 	inFile.close();
 
+		BPTree node;
+		node.insertValue(5);
+		node.insertValue(15);
+		node.insertValue(25);
+		node.insertValue(35);
+		node.insertValue(45);
+		node.insertValue(55);
+		node.insertValue(40);
+		node.insertValue(30);
+		node.insertValue(20);
+		node.display(node.getRoot());
 
+		node.remove(5);
+		node.display(node.getRoot());
+
+	
 
 
 	return 0;
