@@ -2,34 +2,10 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include "bpp.h"
 using namespace std;
-const int MAX = 3;
+const int MAX = 5;
 
-class Node {
-	bool IS_LEAF;
-	int* key, size;
-	Node** ptr;
-	friend class BPTree;
-
-public:
-	Node();
-};
-
-// BP tree
-class BPTree {
-	Node* rootNode;
-	void insertInternal(int, Node*, Node*);
-	Node* searchParent(Node*, Node*);
-	void removeInternal(int, Node*, Node*);
-	void delNode(Node*);
-public:
-	BPTree();
-	void findValue(int);
-	void insertValue(int);
-	void display(Node*);
-	void remove(int);
-	Node* getRoot();
-};
 
 // Constructor of Node
 Node::Node()
@@ -371,6 +347,26 @@ Node* BPTree::searchParent(Node* cursor,
 	return parent;
 }
 
+
+int BPTree::getheight(Node* cursor) {
+	if (cursor->IS_LEAF == false) {
+		return getheight(cursor->ptr[0]) + 1;
+	}
+	else if (cursor->IS_LEAF == true) {
+		return 1;
+	}
+	else {
+		return NULL;
+	}
+}
+
+int BPTree::returnheight() {
+	return (getheight(rootNode));
+}
+
+int BPTree::returnMax() {
+	return MAX; 
+}
 // Print the tree
 void BPTree::display(Node* cursor) {
 	if (cursor != NULL) {

@@ -21,9 +21,15 @@
     <ClCompile Include="mem_pool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mem_pool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bpp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

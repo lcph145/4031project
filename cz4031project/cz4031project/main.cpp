@@ -2,8 +2,8 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include "bpp.cpp"
 #include "mem_pool.h"
+#include "bpp.h"
 
 using namespace std;
 
@@ -56,9 +56,10 @@ int main() {
 	inFile.close();
 
 		
-		
 	node.display(node.getRoot());
-
+	cout << " Expt 2 answers " << "\n";
+	cout << "the height of tree is " << node.returnheight();
+	cout << " The maximum number of keys that can be stored per node is " << node.returnMax()<< "\n";
 
 		//node.remove(5);
 		

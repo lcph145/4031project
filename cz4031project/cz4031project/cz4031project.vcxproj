@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bpp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mem_pool.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bpp.h" />
     <ClInclude Include="mem_pool.h" />
   </ItemGroup>
   <ItemGroup>
