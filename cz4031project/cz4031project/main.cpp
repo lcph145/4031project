@@ -80,6 +80,10 @@ int main() {
 	{
 		cout << " " << *i;
 	}
+	cout << " \n ";
+
+	cout << "Experiment 3 answers "<<"\n";
+	node.findValue(10287);
 	
 		//node.remove(5);
 

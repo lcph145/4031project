@@ -54,8 +54,8 @@ void* mem_pool::addRecord(void* structaddress, std::size_t recordsize) {
 	if (numBlockInitial - numBlockUsed > 0 && recordsize + (char*)currpointer <= endpointer) {
 		currpointer = (char*)currpointer + recordsize;
 		memcpy(currpointer, &structaddress, recordsize);
-
-		return currpointer;
+		//return block address
+		return ((char*)endpointer-100);
 	}
 	else if (recordsize + (char*)currpointer > endpointer && numBlockInitial - numBlockUsed > 0) {
 		if (allocateblock()) {
