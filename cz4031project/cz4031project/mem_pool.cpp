@@ -20,7 +20,7 @@ mem_pool::mem_pool(std::size_t memPoolInitial, std::size_t blkSize)
 
 std::size_t mem_pool::getSizeofDB()
 {
-	return memPoolInitial / 1000;
+	return memPoolInitial / 1000000;
 }
 
 std::size_t mem_pool::getnumberofBlocks()
@@ -51,8 +51,8 @@ bool mem_pool::allocateblock() {
 
 void* mem_pool::addRecord(void* structaddress, std::size_t recordsize) {
 	if (numBlockUsed < numBlockInitial && recordsize + (char*)currpointer <= endpointer) {
+		memcpy(currpointer, structaddress, recordsize);
 		currpointer = (char*)currpointer + recordsize;
-		memcpy(currpointer, &structaddress, recordsize);
 		//return block address
 		cout << "Endpointer is " << endpointer << "\nAnd currptr is " << currpointer << "\n";
 		return ((char*)endpointer-100);

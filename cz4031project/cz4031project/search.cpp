@@ -80,21 +80,21 @@ void BPTree::findValue(int x)
 				//if not visited before, then continue accessing
 				visited.push_back(blkaddress);
 				record = (Record*)blkaddress;
-				Record *temp_loc;
-				memcpy(&temp_loc, &blkaddress, 20);
+				//Record *temp_loc = record;
+				//memcpy(temp_loc, blkaddress, 20);
 				//uintptr_t p = cursor->dbptr[i];
 				//int value = *reinterpret_cast<int*>(p);
-				cout << temp_loc;
-				cout << "The average rating for record with tconst " << (*temp_loc).tconst << " is " << temp_loc->averageRating;
+			//	cout << temp_loc;
+				cout << "The average rating for record with tconst " << record->tconst << " is " << record->averageRating;
 				cout << "\nThe " << "visited" << " block content's tconst values are ";
 				//display(cursor);
 				for (int i = 0; i < 5; i++) {
-					cout << record->tconst << ", ";
+//					cout << record->tconst << ", ";
 
-					if (record->numVotes == x) {
-						cout << " with numvotes " << record->numVotes << " and with rating " << record->averageRating << "\n";
-						averagerating.push_back(record->averageRating);
-					}
+//					if (record->numVotes == x) {
+	//					cout << " with numvotes " << record->numVotes << " and with rating " << record->averageRating << "\n";
+						//averagerating.push_back(record->averageRating);
+	//				}
 
 					blkaddress = (char*)blkaddress + 20;
 				}
