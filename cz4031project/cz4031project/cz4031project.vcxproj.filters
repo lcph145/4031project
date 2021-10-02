@@ -49,5 +49,6 @@
     <None Include="Project 1 Data.tsv">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="Project 1 Data - Copy2.tsv" />
   </ItemGroup>
 </Project>

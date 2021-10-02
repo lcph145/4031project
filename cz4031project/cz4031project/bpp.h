@@ -30,9 +30,9 @@ public:
 	int returnnumnodes();
 	std::vector<int> returnfirstchild();
 	void findValue(int);
-	void insertValue(int,void*);
+	void insertValue(int, void*);
 	void display(Node*);
-	void remove(int);
+	int remove(int);
 	Node* getRoot();
 	int countNodes(Node* cursor, int count);
 };

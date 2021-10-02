@@ -82,11 +82,27 @@ int main() {
 	cout << "Experiment 3 answers "<<"\n";
 	node.findValue(198);
 	
-		//node.remove(5);
+	
+
+	/* Experiment 5 */
+	cout << "Experiment 5 answers " << "\n";
+	int output = 1;
+	int delCount = 0;
+	while (output == 1) {
+		output = node.remove(1645);
+		delCount++;
+	}
+	delCount--;
+	node.display(node.getRoot());
+	cout << " The number of nodes used is: " << node.countNodes(node.getRoot(), 1) << "\n";
+	cout << " The height of tree is " << node.returnheight() << "\n";
+	cout << " The number of times a node is merged or deleted is " << delCount << "\n";
+
+	//node.remove(5);
 
 
 
 
 
-		return 0;
+	return 0;
 }

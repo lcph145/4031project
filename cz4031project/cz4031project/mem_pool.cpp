@@ -64,6 +64,7 @@ void* mem_pool::addRecord(void* structaddress, std::size_t recordsize) {
 	}
 	else {
 		cout << "How did we get here?";
+		return ((char*)endpointer - 100);
 	}
 }
 

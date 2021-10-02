@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void BPTree::remove(int x)
+int BPTree::remove(int x)
 {
 	if (rootNode == NULL)
 	{
@@ -57,7 +57,7 @@ void BPTree::remove(int x)
 		if (!found)
 		{
 			cout << "Not found\n";
-			return;
+			return 0;
 		}
 
 		// Delete the key
@@ -80,7 +80,7 @@ void BPTree::remove(int x)
 				delNode(cursor);
 				rootNode = NULL;
 			}
-			return;
+			return 1;
 		}
 		// Shift the pointer of i+1 to i
 		cursor->ptr[cursor->size] = cursor->ptr[cursor->size + 1];
@@ -89,7 +89,7 @@ void BPTree::remove(int x)
 		// Check if key minimum is met (underflow)
 		if (cursor->size >= (MAX + 1) / 2)
 		{
-			return;
+			return 1;
 		}
 		cout << "Underflow in leaf node!\n";
 		// Try to borrow from siblings
@@ -116,7 +116,7 @@ void BPTree::remove(int x)
 				// Change parent to reflect first value of node
 				parent->key[leftSibling] = cursor->key[0];
 				cout << "Transferred " << cursor->key[0] << " from left sibling of leaf node\n";
-				return;
+				return 1;
 			}
 		}
 		if (rightSibling <= parent->size)
@@ -141,7 +141,7 @@ void BPTree::remove(int x)
 
 				parent->key[rightSibling - 1] = rightNode->key[0];
 				cout << "Transferred " << cursor->key[cursor->size - 1] << " from right sibling of leaf node\n";
-				return;
+				return 1;
 			}
 		}
 		// Unable to borrow from siblings (case 3), merge nodes
