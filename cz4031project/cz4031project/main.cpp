@@ -8,14 +8,6 @@
 
 using namespace std;
 
-struct Record
-{
-	char tconst[10];
-	int numVotes;
-	float averageRating;
-};
-
-
 
 int main() {
 	int numVotes = 0;

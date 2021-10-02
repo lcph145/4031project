@@ -1,6 +1,4 @@
 #pragma once
-#pragma once
-
 #include<iostream>
 
 class mem_pool {
@@ -29,4 +27,12 @@ public:
         return blkSize;
     };
 
+};
+
+
+struct Record
+{
+    char tconst[10];
+    int numVotes;
+    float averageRating;
 };

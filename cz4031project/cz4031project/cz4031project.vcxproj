@@ -22,6 +22,7 @@
     <ClCompile Include="bpp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mem_pool.cpp" />
+    <ClCompile Include="search.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bpp.h" />
