@@ -20,8 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bpp.cpp" />
+    <ClCompile Include="insert.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mem_pool.cpp" />
+    <ClCompile Include="remove.cpp" />
     <ClCompile Include="search.cpp" />
   </ItemGroup>
   <ItemGroup>

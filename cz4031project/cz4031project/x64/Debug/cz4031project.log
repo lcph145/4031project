@@ -1,8 +1,3 @@
-﻿  search.cpp
+﻿  remove.cpp
 D:\Documents\GitHub\4031project\cz4031project\cz4031project\bpp.h(6,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\Documents\GitHub\4031project\cz4031project\cz4031project\search.cpp(88,37): warning C4244: 'argument': conversion from 'float' to '_Ty', possible loss of data
-          with
-          [
-              _Ty=int
-          ]
   cz4031project.vcxproj -> D:\Documents\GitHub\4031project\cz4031project\x64\Debug\cz4031project.exe
