@@ -1,9 +1,7 @@
 #pragma once
-#include <climits>
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <vector>;
+#include <vector>
+
+const int MAX = 5;
 
 class Node {
 	bool IS_LEAF;

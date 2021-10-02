@@ -2,7 +2,6 @@
 #include "mem_pool.h"
 
 using namespace std;
-const int MAX = 5;
 
 // Function to implement the Insert
 // Operation in B+ Tree

@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 
-
 using namespace std;
 
 mem_pool::mem_pool(std::size_t memPoolInitial, std::size_t blkSize)

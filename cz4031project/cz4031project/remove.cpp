@@ -2,7 +2,6 @@
 #include "mem_pool.h"
 
 using namespace std;
-const int MAX = 5;
 
 void BPTree::remove(int x)
 {

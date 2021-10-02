@@ -8,8 +8,6 @@
 #include <vector>
 
 using namespace std;
-const int MAX = 5;
-
 
 // Constructor of Node
 Node::Node()
@@ -65,7 +63,6 @@ int BPTree::countNodes(Node* cursor, int count) {
 		count = count + 1;
 		return count;
 	}
-
 
 	else if((cursor->IS_LEAF == false) && (cursor != nullptr)){
 		for (int i = 0;i < cursor->size + 1;i++) {
