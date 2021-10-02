@@ -50,16 +50,20 @@ bool mem_pool::allocateblock() {
 }*/
 
 void* mem_pool::addRecord(void* structaddress, std::size_t recordsize) {
-	if (numBlockInitial - numBlockUsed > 0 && recordsize + (char*)currpointer <= endpointer) {
+	if (numBlockUsed < numBlockInitial && recordsize + (char*)currpointer <= endpointer) {
 		currpointer = (char*)currpointer + recordsize;
 		memcpy(currpointer, &structaddress, recordsize);
 		//return block address
+		cout << "Endpointer is " << endpointer << "\nAnd currptr is " << currpointer << "\n";
 		return ((char*)endpointer-100);
 	}
 	else if (recordsize + (char*)currpointer > endpointer && numBlockInitial - numBlockUsed > 0) {
 		if (allocateblock()) {
 			return (addRecord(structaddress, recordsize));
 		};
+	}
+	else {
+		cout << "How did we get here?";
 	}
 }
 

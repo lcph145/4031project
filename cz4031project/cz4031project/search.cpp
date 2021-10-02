@@ -73,16 +73,18 @@ void BPTree::findValue(int x)
 			if (cursor->key[i] == x) {
 				cout << "The value " << x << " has been found!\n";
 				void* blkaddress = cursor->dbptr[i];
+				cout << "Test" << blkaddress;
 				blockcount++;
 				//if not visited before, then continue accessing
 				visited.push_back(blkaddress);
 				record = (Record*)blkaddress;
-				cout << "The numVotes is " << record->numVotes;
+				cout << "The average rating for record with tconst " << record->tconst << " is " << record->averageRating;
 				cout << "\nThe " << "visited" << " block content 's tconst values are ";
 				for (int i = 0; i < 5; i++) {
 					cout << record->tconst << ",";
 
 					if (record->numVotes == x) {
+						cout << " with numvotes " << record->numVotes << " and with rating " << record->averageRating << "\n";
 						averagerating.push_back(record->averageRating);
 					}
 

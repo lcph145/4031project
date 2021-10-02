@@ -16,7 +16,6 @@ void BPTree::insertValue(int x, void* address)
 		rootNode->key[0] = x;
 		rootNode->dbptr[0] = address;
 		rootNode->size = 1;
-
 	}
 
 	// Traverse the B+ Tree
@@ -102,7 +101,7 @@ void BPTree::insertValue(int x, void* address)
 			newLeaf->IS_LEAF = true;
 
 			cursor->size = (MAX + 1) / 2;
-			newLeaf->size = MAX + 1 - (MAX + 1) / 2;
+			newLeaf->size = (MAX + 2) / 2;
 
 			cursor->ptr[cursor->size] = newLeaf;
 
@@ -181,7 +180,7 @@ void BPTree::insertInternal(int x, Node* cursor, Node* childNode)
 		// For new Internal node in the case of overflow
 		Node* newInternal = new Node;
 
-		// Create new virtual node to with space for the key
+		// Create new virtual node with space for the key
 		int virtualKey[MAX + 1];
 		Node* virtualPtr[MAX + 2];
 
@@ -203,14 +202,14 @@ void BPTree::insertInternal(int x, Node* cursor, Node* childNode)
 		}
 
 		// For every key above i, shift it forward
-		for (int j = MAX + 1; j > i; j--) {
+		for (int j = MAX; j > i; j--) {
 			virtualKey[j] = virtualKey[j - 1];
 		}
 
 		virtualKey[i] = x;
 
 		// For every pointer above i, shift it forward
-		for (int j = MAX + 2; j > i + 1; j--) {
+		for (int j = MAX + 1; j > i + 1; j--) {
 			virtualPtr[j] = virtualPtr[j - 1];
 		}
 
@@ -219,7 +218,7 @@ void BPTree::insertInternal(int x, Node* cursor, Node* childNode)
 
 		// Split internal node
 		cursor->size = (MAX + 1) / 2;
-		newInternal->size = MAX - (MAX + 1) / 2;
+		newInternal->size = MAX / 2;
 
 		// Copy keys from virtual node to the new internal node
 		for (i = 0, j = cursor->size + 1; i < newInternal->size; i++, j++) {

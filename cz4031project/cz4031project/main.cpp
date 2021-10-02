@@ -13,9 +13,10 @@ int main() {
 	int numVotes = 0;
 	float averageRating = 0;
 	string tconst = " ";
-	void* address;
+	void* blockaddress;
 	vector <int>vec;
 
+	/* Experiment 1 */
 	ifstream inFile;
 	inFile.open("Project 1 Data - Copy.tsv");
 	if (!inFile) {
@@ -37,22 +38,24 @@ int main() {
 		istringstream stream(str);
 
 		stream >> record.tconst >> record.averageRating >> record.numVotes;
-		cout << record.tconst << " has " << record.averageRating << " plus " << record.numVotes << "\n";
+		cout << "tconst " << record.tconst << " has average rating " << record.averageRating << " with numVotes " << record.numVotes << "\n";
 	
-		address = mem_obj.addRecord(&record, sizeof(record));
-		node.insertValue(record.numVotes, address);
-		cout << address<< "\n";
+		blockaddress = mem_obj.addRecord(&record, sizeof(record));
+		node.insertValue(record.numVotes, blockaddress);
+		cout << blockaddress << "\n";
 	}
 
 	cout << "Expt 1 answers " << "\n";
 	cout << "Memory Pool Size in MB is " << mem_obj.getSizeofDB() << "\n";
 	cout << "The block size is " << mem_obj.getBlkSize() << "\n";
 	cout << "The number of blocks allocated is " << mem_obj.getnumberofBlocks() << "\n";
-	cout << "Current memory used= Blocks used multiplied by blocksize= " << (mem_obj.getBlkSize()) * mem_obj.getnumberofBlocks() << "\n" << '\n';
+	cout << "Current memory used = Blocks used multiplied by blocksize = " << (mem_obj.getBlkSize()) * mem_obj.getnumberofBlocks() << "\n" << '\n';
 
 
 	inFile.close();
 
+
+	/* Experiment 2 */
 	cout << "\n";
 	node.display(node.getRoot());
 	cout << " Expt 2 answers " << "\n";
@@ -74,8 +77,10 @@ int main() {
 	}
 	cout << " \n ";
 
+
+	/* Experiment 3 */
 	cout << "Experiment 3 answers "<<"\n";
-	node.findValue(6018);
+	node.findValue(198);
 	
 		//node.remove(5);
 
