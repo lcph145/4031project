@@ -75,7 +75,7 @@ int main() {
 	cout << " \n ";
 
 	cout << "Experiment 3 answers "<<"\n";
-	node.findValue(10287);
+	node.findValue(6018);
 	
 		//node.remove(5);
 

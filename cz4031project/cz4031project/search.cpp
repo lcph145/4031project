@@ -7,15 +7,14 @@ using namespace std;
 // in B+ Tree
 void BPTree::findValue(int x)
 {
-
 	// Return empty tree
 	if (rootNode == NULL) {
-		cout << "tree is empty at the moment, please insert keys\n";
+		cout << "Tree is empty at the moment, please insert keys\n";
 	}
 
 	else {
 		Node* cursor = rootNode;
-		int count = 0;
+		int nodecount = 0;
 		int blockcount = 0;
 
 
@@ -29,43 +28,42 @@ void BPTree::findValue(int x)
 				if (i == cursor->size - 1) {
 					cursor = cursor->ptr[i + 1];
 					if (cursor->IS_LEAF != true) {
-						count++;
+						nodecount++;
 					}
-					if ((count <= 5) && (cursor->IS_LEAF != true)) {
-						cout << "The " << count << "th internal node accessed is ";
+					if ((nodecount <= 5) && (cursor->IS_LEAF != true)) {
+						cout << "The " << nodecount << "th internal node accessed is ";
 						for (int i = 0; i < cursor->size; i++) {
 							cout << cursor->key[i] << ",";
 						}
-
 					}
 					break;
 				}
 
-				if (x >= cursor->key[i]) {
-					continue;
-				}
-
 				// If x is less than the key i, it must be in the node in pointer i
-				else if (x < cursor->key[i]) {
+				if (x < cursor->key[i]) {
 					cursor = cursor->ptr[i];
 					if (cursor->IS_LEAF != true) {
-						count++;
+						nodecount++;
 					}
-					if ((count <= 5) && (cursor->IS_LEAF != true)) {
-						cout << "\n" << "The " << count << "th internal node accessed is ";
+					
+					// It is sufficient to report for the first 5 index nodes or data blocks only if there are more than 5
+					// I'll re-implement this part later after discussing with Luke
+					if ((nodecount <= 5) && (cursor->IS_LEAF != true)) {
+						cout << "\n" << "The " << nodecount << "th internal node accessed is ";
+
+						// Print all values in the current node
 						for (int i = 0; i < cursor->size; i++) {
 							cout << cursor->key[i] << ",";
 						}
-
 					}
 					break;
 				}
 
 			}
 		}
-		cout << "\n" << "The total number of index nodes/ internal nodes(exclusive of root and leaf) accessed is " << count << "\n";
+		cout << "\n" << "The total number of index nodes/internal nodes(exclusive of root and leaf) accessed is " << nodecount << "\n";
 
-		// Search for the value in the leaf
+		// Search for the value in the leaf node reached
 		vector<int> averagerating;
 		vector<void*>visited;
 		Record* record;
@@ -73,14 +71,14 @@ void BPTree::findValue(int x)
 
 			// If found then return
 			if (cursor->key[i] == x) {
-				cout << "the value has been found\n";
+				cout << "The value " << x << " has been found!\n";
 				void* blkaddress = cursor->dbptr[i];
 				blockcount++;
 				//if not visited before, then continue accessing
 				visited.push_back(blkaddress);
 				record = (Record*)blkaddress;
-				cout << record->numVotes;
-				cout << "The " << "visited" << " block content 's tconst values are ";
+				cout << "The numVotes is " << record->numVotes;
+				cout << "\nThe " << "visited" << " block content 's tconst values are ";
 				for (int i = 0; i < 5; i++) {
 					cout << record->tconst << ",";
 
@@ -102,13 +100,11 @@ void BPTree::findValue(int x)
 						//call function recursively
 					}
 				}
-
-
 				return;
 			}
 		}
 
 		// Else element is not present
-		cout << "the value cannot be found in the tree\n";
+		cout << "The value cannot be found in the tree\n";
 	}
 }
