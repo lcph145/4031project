@@ -220,6 +220,15 @@ void BPTree::insertInternal(int x, Node* cursor, Node* childNode)
 		cursor->size = (MAX + 1) / 2;
 		newInternal->size = MAX / 2;
 
+		// Give the virtual node's keys to cursor node
+		for (i = 0; i < cursor->size; i++) {
+			cursor->key[i] = virtualKey[i];
+		}
+
+		for (i = 0; i < cursor->size + 1; i++) {
+			cursor->ptr[i] = virtualPtr[i];
+		}
+
 		// Copy keys from virtual node to the new internal node
 		for (i = 0, j = cursor->size + 1; i < newInternal->size; i++, j++) {
 			newInternal->key[i] = virtualKey[j];
