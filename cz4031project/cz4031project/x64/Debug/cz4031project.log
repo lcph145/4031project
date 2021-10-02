@@ -1,5 +1,5 @@
 ﻿  search.cpp
-D:\Documents\GitHub\4031project\cz4031project\cz4031project\search.cpp(91,37): warning C4244: 'argument': conversion from 'float' to '_Ty', possible loss of data
+D:\Documents\GitHub\4031project\cz4031project\cz4031project\search.cpp(96,37): warning C4244: 'argument': conversion from 'float' to '_Ty', possible loss of data
           with
           [
               _Ty=int

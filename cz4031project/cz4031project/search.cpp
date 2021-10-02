@@ -10,13 +10,13 @@ void BPTree::findValue(int x)
 	// Return empty tree
 	if (rootNode == NULL) {
 		cout << "Tree is empty at the moment, please insert keys\n";
+		return;
 	}
 
 	else {
 		Node* cursor = rootNode;
 		int nodecount = 0;
 		int blockcount = 0;
-
 
 		// Traverse until leaf node
 		while (cursor->IS_LEAF == false) {
@@ -67,6 +67,7 @@ void BPTree::findValue(int x)
 		vector<int> averagerating;
 		vector<void*>visited;
 		Record* record;
+
 		for (int i = 0; i < cursor->size; i++) {
 
 			// If found then return
@@ -79,12 +80,16 @@ void BPTree::findValue(int x)
 				//if not visited before, then continue accessing
 				visited.push_back(blkaddress);
 				record = (Record*)blkaddress;
+				Record *temp_loc;
+				memcpy(&temp_loc, &blkaddress, 20);
 				//uintptr_t p = cursor->dbptr[i];
 				//int value = *reinterpret_cast<int*>(p);
-				cout << "The average rating for record with tconst " << record->tconst << " is " << record->averageRating;
-				cout << "\nThe " << "visited" << " block content 's tconst values are ";
+				cout << temp_loc;
+				cout << "The average rating for record with tconst " << (*temp_loc).tconst << " is " << temp_loc->averageRating;
+				cout << "\nThe " << "visited" << " block content's tconst values are ";
+				//display(cursor);
 				for (int i = 0; i < 5; i++) {
-					cout << record->tconst << ",";
+					cout << record->tconst << ", ";
 
 					if (record->numVotes == x) {
 						cout << " with numvotes " << record->numVotes << " and with rating " << record->averageRating << "\n";
@@ -98,7 +103,6 @@ void BPTree::findValue(int x)
 					break;
 				}
 
-
 				if (i == (cursor->size - 1)) {
 					if (cursor->key[i] == x) {
 						cursor = cursor->ptr[cursor->size - 1];
@@ -109,7 +113,11 @@ void BPTree::findValue(int x)
 			}
 		}
 
+		//for (int i = 0; i < visited.size(); i++)
+		//	cout << "visited vector " << i << ": " << visited.at(i);
+
 		// Else element is not present
 		cout << "The value cannot be found in the tree\n";
+		return;
 	}
 }
