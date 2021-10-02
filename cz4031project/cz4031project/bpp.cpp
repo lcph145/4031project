@@ -108,6 +108,7 @@ void BPTree::findValue(int x)
 				//if not visited before, then continue accessing
 				visited.push_back(blkaddress);
 				record = (Record*)blkaddress;
+				cout << record->numVotes;
 				cout << "The " << "visited" << " block content 's tconst values are ";
 				for (int i = 0;i < 5;i++) {
 					cout << record->tconst << ",";
