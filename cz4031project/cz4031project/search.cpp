@@ -70,34 +70,149 @@ void BPTree::findValue(int x)
 		int numrating = 0; // the number to be divided by avg= totalrating/ numrating
 		Record* record; // instantiate this so i can read each record
 		int datablockcount = 0; //current data block count
-		int iteration = 1; //number of times the recursion below is repeated.
+		int iteration = 0; //number of times the recursion below is repeated.
+		void* address;
+		int j = 0;
+		bool flag = true;
 
-		continuesearch(cursor,datablockcount, totalrating,x,iteration,numrating);
+	
+		for (int i = 0;i <cursor->size ;i++) {
+			if (cursor->key[i] == x) {
+				j = i;
+				flag = true;
+				break;
+			}
+			else if (i==cursor->size){
+				cout << "value not found";
+			}
+
+		}
+
+
+
+		
+		while (flag){
+				
+			
+				address = cursor->dbptr[j];
+				cout << "block's content:";
+				for (int i = 0;i < 5;i++) {
+					record = (Record*)address;
+					cout << record->tconst << "tconst values are \n";
+					if (record->numVotes == x) {
+						totalrating += record->averageRating;
+						numrating++;
+					}
+					address = (char*)address + 20;
+				}
+				j++;
+
+				if (j == cursor->size - 1) {
+					cursor = cursor->ptr[cursor->size];
+					j = 0;
+					if (cursor->key[j]!=x) {
+						flag = false;
+					}
+					break;
+		
+				}
+
+
+				else if (j < cursor->size - 1 && cursor->key[j] != x) {
+					flag = false;
+					//print all the stuff
+					break;
+				}
+
+
+				
+			
+
+		}
+
+
+
+
+
+
+		//continuesearch(cursor,datablockcount, totalrating,x,iteration,numrating);
 	}
 }
 
 
-void BPTree::continuesearch(Node* cursor,int datablockcount, float totalrating,int x,int iteration,int numrating)
-{
+/*void BPTree::continuesearch(Node* cursor, int datablockcount, float totalrating, int x, int iteration, int numrating)
+ {
 	Record* record;
-	//for (int i = 0; i < cursor->size; i++) {
-		//cout << cursor->key[i] << "\n";
-	//}
-
-	for (int i = 0; i < cursor->size-1; i++) { //cant figure why size-1 works only
-		if (cursor->key[i] == x) {
-			cout << "The value " << x << " has been found!\n";
-			void* blkaddress = cursor->dbptr[i];
-
-
-			datablockcount++;
-			if (datablockcount <= 5) {
-				cout << "The block contains records with tconst of : ";
+	void* blkaddress;
+	iteration++;
+	if (iteration == 1) {
+		for (int i = 0; i < cursor->size; i++) {
+			//cout << cursor->key[i] << "\n";
+			if (cursor->key[i] == x) {
+				//cout << "The value " << x << " has been found in the leaf node!\n";
+				blkaddress = cursor->dbptr[i];
+				
+				datablockcount++;
+				if (datablockcount <= 5) {
+					cout << "\n";
+					cout << "data blocks access:";
+				}
 				for (int j = 0; j < 5; j++) {
 					record = (Record*)blkaddress;
 					cout << record->tconst << ", ";
-					//cout << record->numVotes << ", ";
-					//cout << record->averageRating << ", ";
+					if (record->numVotes == x) {
+						cout << record->averageRating<< ", ";
+						//totalrating = totalrating + (record->averageRating);
+						//numrating++;
+
+					}
+
+					blkaddress = (Record*)blkaddress + 20;
+				}
+				cout << numrating << "num rating\n";
+				cout << totalrating << "total rating \n";
+
+
+			}
+		}
+		if (cursor->key[cursor->size - 1] == x) {
+			cursor = cursor->ptr[cursor->size];
+			cout<<"new op" <<cursor->key[0];
+			continuesearch(cursor, datablockcount, totalrating, x, iteration, numrating);
+		}
+
+		else if (datablockcount==0) {
+			cout << "data cannot be found \n";
+			return;
+		}
+		else if(cursor->key[cursor->size - 1] != x){
+			//cout << numrating << "num rating\n";
+		    //cout << totalrating << "total rating \n";
+			cout << '\n';
+			cout << "The amount of data blocks accessed is " << datablockcount <<'\n';
+			cout<< "The average rating is "<<totalrating/numrating<<'\n';
+			return;
+			
+		}
+	}
+
+	
+
+	else if (iteration > 1) {
+		//cout << "Entered anoter iteration \n";
+		for (int i = 0; i < cursor->size; i++) {
+			if (cursor->key[i] == x) {
+				void* blkaddress = cursor->dbptr[i];
+				record = (Record*)blkaddress;
+				datablockcount++;
+				if (datablockcount <= 5) {
+					cout << "\n";
+					cout << "data blocks access:";
+				}
+				for (int j = 0; j < 5; j++) {
+					if (datablockcount <= 5) {
+						cout << record->tconst << ", ";
+					}
 
 					if (record->numVotes == x) {
 						totalrating = totalrating + (record->averageRating);
@@ -106,51 +221,32 @@ void BPTree::continuesearch(Node* cursor,int datablockcount, float totalrating,i
 					}
 
 					blkaddress = (char*)blkaddress + 20;
-
-					//cout << blkaddress;
 				}
-			}
-			}
-
-
-			if (i == (cursor->size - 1)) {
-					cursor = cursor->ptr[cursor->size - 1];
-					iteration++;
-					continuesearch(cursor, datablockcount, totalrating, x, iteration,numrating);
-						
+				if (cursor->key[i + 1] != x) {
+					cout << "The amount of data blocks accessed is " << datablockcount << '\n';
+					cout << "The average rating is " << totalrating / numrating << '\n';
+					cout << "debug1";
+					return;
+				}
 
 			}
-			cout << "\n";
-			if (cursor->key[i + 1] != x) {
-				cout << "datablocks accessed is " << datablockcount<<"\n";
-				cout <<"The average rating is:" << totalrating / numrating << "\n";
+			if (cursor->key[0]!=x) 
+			{
+				cout << "The amount of data blocks accessed is " << datablockcount << '\n';
+				cout << "The average rating is " << totalrating / numrating << '\n';
+				cout << "debug1"<< cursor->key[0];
 				return;
 			}
-			
-
-
-		else if ((cursor->key[i] != x) && (i == cursor->size - 1) && (iteration == 1) && (datablockcount == 0)) {
-				
-			// Else element is not present
-			cout << "The value cannot be found in the tree\n";
-			cout << "The average rating is:" << totalrating / numrating << "\n";
-			return;
 		}
-
-		else if ((iteration > 1)&&(cursor->key[i]!=x)&&(i==0)) {
-			cout << "datablocks accessed is" << datablockcount;
-			cout << "The average rating is:" << totalrating / numrating << "\n";
-			return;
+		if (cursor->key[cursor->size - 1] == x) {
+			cursor = cursor->ptr[cursor->size];
+			//cout<<"new op" <<cursor->key[0];
+			continuesearch(cursor, datablockcount, totalrating, x, iteration, numrating);
 		}
-
-		else if ((iteration > 1) && (cursor->key[i] != x) && (cursor->key[i-1] != x)) {
-			cout << "datablocks accessed is" << datablockcount;
-			cout << "The average rating is:" << totalrating / numrating << "\n";
-			return;
-		}
-
 	}
-}
+
+
+}*/
 	
 
 // Function to find any element

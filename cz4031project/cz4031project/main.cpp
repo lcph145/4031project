@@ -80,7 +80,7 @@ int main() {
 
 	/* Experiment 3 */
 	cout << "\nExperiment 3 answers "<<"\n";
-	node.findValue(857);
+	node.findValue(17);
 
 	
 	/* Experiment 4 */
