@@ -49,7 +49,7 @@ int main() {
 	cout << "Memory Pool Size in MB is " << mem_obj.getSizeofDB() << "\n";
 	cout << "The block size is " << mem_obj.getBlkSize() << "\n";
 	cout << "The number of blocks allocated is " << mem_obj.getnumberofBlocks() << "\n";
-	cout << "Current memory used = Blocks used multiplied by blocksize = " << (mem_obj.getBlkSize()) * mem_obj.getnumberofBlocks() << "\n" << '\n';
+	cout << "Current memory used = Blocks used multiplied by blocksize = " << (mem_obj.getBlkSize()) * mem_obj.getnumberofBlocks() << " bytes\n" << '\n';
 
 
 	inFile.close();
@@ -58,11 +58,11 @@ int main() {
 	/* Experiment 2 */
 	cout << "\n";
 	node.display(node.getRoot());
-	cout << " Expt 2 answers " << "\n";
-	cout << " The height of tree is " << node.returnheight() << "\n";
-	cout << " The maximum number of keys that can be stored per node is " << node.returnMax() << "\n";
-	cout << " The number of nodes used is: " << node.countNodes(node.getRoot(), 1)<< "\n";
-	cout << " The content of root node is";
+	cout << "\nExpt 2 answers " << "\n";
+	cout << "The height of tree is " << node.returnheight() << "\n";
+	cout << "The maximum number of keys that can be stored per node is " << node.returnMax() << "\n";
+	cout << "The number of nodes used is: " << node.countNodes(node.getRoot(), 1)<< "\n";
+	cout << "The content of root node is";
 	vec = node.returnRootvalue();
 	for (auto i = vec.begin(); i < vec.end(); i++)
 	{
@@ -79,16 +79,17 @@ int main() {
 
 
 	/* Experiment 3 */
-	cout << "Experiment 3 answers "<<"\n";
+	cout << "\nExperiment 3 answers "<<"\n";
 	node.findValue(25);
+
 	
 	/* Experiment 4 */
-	cout << "Experiment 4 answers " << "\n";
+	cout << "\nExperiment 4 answers " << "\n";
 	//node.findvaluerange(15,20);
 
 
 	/* Experiment 5 */
-	cout << "Experiment 5 answers " << "\n";
+	cout << "\nExperiment 5 answers " << "\n";
 	int output = 1;
 	int delCount = 0;
 	while (output == 1) {

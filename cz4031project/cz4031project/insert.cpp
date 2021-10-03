@@ -218,7 +218,7 @@ void BPTree::insertInternal(int x, Node* cursor, Node* childNode)
 
 		// Split internal node
 		cursor->size = (MAX + 1) / 2;
-		newInternal->size = MAX-(MAX+1) / 2;
+		newInternal->size = MAX / 2;
 
 		// Give the virtual node's keys to cursor node
 		for (i = 0; i < cursor->size; i++) {
