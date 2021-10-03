@@ -1,5 +1,4 @@
-﻿  mem_pool.cpp
-C:\Users\lukec\OneDrive\Documents\4031project\cz4031project\cz4031project\mem_pool.cpp(12,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\lukec\OneDrive\Documents\4031project\cz4031project\cz4031project\mem_pool.cpp(13,50): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\lukec\OneDrive\Documents\4031project\cz4031project\cz4031project\mem_pool.cpp(70): warning C4715: 'mem_pool::addRecord': not all control paths return a value
+﻿  search.cpp
+C:\Users\lukec\OneDrive\Documents\4031project\cz4031project\cz4031project\search.cpp(78,11): warning C4101: 'record': unreferenced local variable
+C:\Users\lukec\OneDrive\Documents\4031project\cz4031project\cz4031project\search.cpp(229,12): warning C4101: 'record': unreferenced local variable
   cz4031project.vcxproj -> C:\Users\lukec\OneDrive\Documents\4031project\cz4031project\x64\Debug\cz4031project.exe

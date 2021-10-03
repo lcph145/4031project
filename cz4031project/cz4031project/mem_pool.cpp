@@ -32,9 +32,9 @@ bool mem_pool::allocateblock() {
 		currpointer = (char*)startpointer + numBlockUsed * blkSize;
 		endpointer = (char*)startpointer + (numBlockUsed + 1) * blkSize;
 		memPoolLeft = memPoolLeft - blkSize;
-		cout << "memPoolLeft: " << memPoolLeft << "\n";
+		//cout << "memPoolLeft: " << memPoolLeft << "\n";
 		numBlockUsed++;
-		cout << "Current pointer: " << currpointer << "\n";
+		//cout << "Current pointer: " << currpointer << "\n";
 		return true;
 	}
 	else {
@@ -54,7 +54,7 @@ void* mem_pool::addRecord(void* structaddress, std::size_t recordsize) {
 		memcpy(currpointer, structaddress, recordsize);
 		currpointer = (char*)currpointer + recordsize;
 		//return block address
-		cout << "Endpointer is " << endpointer << "\nAnd currptr is " << currpointer << "\n";
+		//cout << "Endpointer is " << endpointer << "\nAnd currptr is " << currpointer << "\n";
 		return ((char*)endpointer-100);
 	}
 	else if (recordsize + (char*)currpointer > endpointer && numBlockInitial - numBlockUsed > 0) {

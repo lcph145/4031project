@@ -30,9 +30,13 @@ public:
 	int returnnumnodes();
 	std::vector<int> returnfirstchild();
 	void findValue(int);
+	void continuesearch(Node* cursor, int datablockcount, float totalrating, int x,int iterator,int numrating );
+	void findValuerange(int x, int y);
+	void continuesearchrange(Node* cursor, int datablockcount, float totalrating, int x, int iteration, int numrating, int y);
 	void insertValue(int, void*);
 	void display(Node*);
 	int remove(int);
 	Node* getRoot();
 	int countNodes(Node* cursor, int count);
+
 };

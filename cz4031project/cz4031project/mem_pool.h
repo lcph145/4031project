@@ -35,5 +35,4 @@ struct Record
     char tconst[10];
     int numVotes;
     float averageRating;
-    float nothing = 1;
 };

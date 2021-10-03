@@ -24,7 +24,7 @@ int main() {
 		exit(1);   // call system to stop
 	}
 
-	mem_pool mem_obj(100000, 100);
+	mem_pool mem_obj(10000000, 100);
 
 	cout << mem_obj.getBlkSize() << endl;
 
@@ -42,7 +42,7 @@ int main() {
 	
 		blockaddress = mem_obj.addRecord(&record, sizeof(record));
 		node.insertValue(record.numVotes, blockaddress);
-		cout << blockaddress << "\n";
+		//cout << blockaddress << "\n";
 	}
 
 	cout << "Expt 1 answers " << "\n";
@@ -80,9 +80,12 @@ int main() {
 
 	/* Experiment 3 */
 	cout << "Experiment 3 answers "<<"\n";
-	node.findValue(198);
+	node.findValue(25);
 	
-	
+	/* Experiment 4 */
+	cout << "Experiment 4 answers " << "\n";
+	//node.findvaluerange(15,20);
+
 
 	/* Experiment 5 */
 	cout << "Experiment 5 answers " << "\n";
@@ -93,7 +96,6 @@ int main() {
 		delCount++;
 	}
 	delCount--;
-	node.display(node.getRoot());
 	cout << " The number of nodes used is: " << node.countNodes(node.getRoot(), 1) << "\n";
 	cout << " The height of tree is " << node.returnheight() << "\n";
 	cout << " The number of times a node is merged or deleted is " << delCount << "\n";
