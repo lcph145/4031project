@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <fstream>
 
 const int MAX = 5;
 
@@ -19,8 +20,9 @@ class BPTree {
 	Node* rootNode;
 	void insertInternal(int, Node*, Node*);
 	Node* searchParent(Node*, Node*);
-	void removeInternal(int, Node*, Node*);
+	void removeNonLeaf(int, Node*, Node*);
 	void delNode(Node*);
+	void adjustNode(Node*, std::string);
 public:
 	BPTree();
 	int getheight(Node* cursor);
@@ -33,6 +35,8 @@ public:
 	void continuesearch(Node* cursor, int datablockcount, float totalrating, int x,int iterator,int numrating );
 	void findValuerange(int x, int y);
 	void continuesearchrange(Node* cursor, int datablockcount, float totalrating, int x, int iteration, int numrating, int y);
+	void rangedSearch(int x, int y);
+	void continueRanged(Node* cursor, int datablockcount, float totalrating, int x, int iterator, int numrating, int y);
 	void insertValue(int, void*);
 	void display(Node*);
 	int remove(int);

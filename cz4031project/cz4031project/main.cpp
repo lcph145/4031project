@@ -84,8 +84,8 @@ int main() {
 
 	
 	/* Experiment 4 */
-	cout << "\nExperiment 4 answers " << "\n";
-	//node.findvaluerange(15,20);
+	//cout << "\nExperiment 4 answers " << "\n";
+	//node.findValuerange(25,55);
 
 
 	/* Experiment 5 */
@@ -93,6 +93,7 @@ int main() {
 	int output = 1;
 	int delCount = 0;
 	while (output == 1) {
+		// Change this to 1000 for Experiment 5
 		output = node.remove(1645);
 		delCount++;
 	}
@@ -100,6 +101,19 @@ int main() {
 	cout << " The number of nodes used is: " << node.countNodes(node.getRoot(), 1) << "\n";
 	cout << " The height of tree is " << node.returnheight() << "\n";
 	cout << " The number of times a node is merged or deleted is " << delCount << "\n";
+	vec = node.returnRootvalue();
+	for (auto i = vec.begin(); i < vec.end(); i++)
+	{
+		cout << " " << *i;
+	}
+	vec = node.returnfirstchild();
+	cout << "\n";
+	cout << " The content of first child node is";
+	for (auto i = vec.begin(); i < vec.end(); i++)
+	{
+		cout << " " << *i;
+	}
+	cout << " \n ";
 
 	//node.remove(5);
 
