@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\lukec\OneDrive\Documents\4031project\cz4031project\cz4031project\</FILEPATH>
+      <FILENAME>mem_pool.cpp</FILENAME>
+      <LINE>32</LINE>
+      <COLUMN>51</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>mem_pool::allocateblock</FUNCTION>
+    <DECORATED>?allocateblock@mem_pool@@QEAA_NXZ</DECORATED>
+    <FUNCLINE>30</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\lukec\OneDrive\Documents\4031project\cz4031project\cz4031project\</FILEPATH>
+      <FILENAME>mem_pool.cpp</FILENAME>
+      <LINE>33</LINE>
+      <COLUMN>56</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>mem_pool::allocateblock</FUNCTION>
+    <DECORATED>?allocateblock@mem_pool@@QEAA_NXZ</DECORATED>
+    <FUNCLINE>30</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\lukec\OneDrive\Documents\4031project\cz4031project\cz4031project\</FILEPATH>
+      <FILENAME>mem_pool.cpp</FILENAME>
+      <LINE>33</LINE>
+      <COLUMN>51</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '+' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '+' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>mem_pool::allocateblock</FUNCTION>
+    <DECORATED>?allocateblock@mem_pool@@QEAA_NXZ</DECORATED>
+    <FUNCLINE>30</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>
