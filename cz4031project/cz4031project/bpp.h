@@ -29,16 +29,9 @@ public:
 	int returnheight();
 	int returnMax();
 	std::vector<int> returnRootvalue();
-	int returnnumnodes();
 	std::vector<int> returnfirstchild();
 	void findValue(int);
 	void findValuerange(int x, int y);
-	bool searchnumber(int x);
-	void continuesearch(Node* cursor, int datablockcount, float totalrating, int x,int iterator,int numrating );
-	void findRange(int x, int y);
-	bool continuerange(Node* cursor, int datablockcount, float totalrating, int x, int iteration, int numrating, int y);
-	void rangedSearch(int x, int y);
-	void continueRanged(Node* cursor, int datablockcount, float totalrating, int x, int iterator, int numrating, int y);
 	void insertValue(int, void*);
 	void display(Node*);
 	int remove(int);

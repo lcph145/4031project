@@ -76,9 +76,9 @@ void BPTree::findValue(int x)
 		int j = 0;
 		bool flag = true;
 
-		for (int i = 0;i < cursor->size;i++) {
+		/*for (int i = 0;i < cursor->size;i++) {
 				cout << cursor->key[i]<<"\n";
-		}
+		}*/
 
 	
 
@@ -90,9 +90,9 @@ void BPTree::findValue(int x)
 					j = i;
 					flag = true;
 					contsearch= false;
-					for (int i = 0;i < cursor->size;i++) {
-						cout << cursor->key[i] << "\n";
-					}
+					//for (int i = 0;i < cursor->size;i++) {
+						//cout << cursor->key[i] << "\n";
+					//}
 
 					break;
 				}
@@ -124,18 +124,22 @@ void BPTree::findValue(int x)
 		while (flag){
 				
 
-				cout << "j value" << j <<"\n";
+				//cout << "j value" << j <<"\n";
 				address = cursor->dbptr[j];
 
-				for (int i = 0;i < cursor->size;i++) {
-					cout << cursor->key[i] << "\n";
-				}
+				//for (int i = 0;i < cursor->size;i++) {
+					//cout << cursor->key[i] << "\n";
+				//}
 
-			
-				cout << "block's content:";
+				datablockcount++;
+				if (datablockcount <= 5) {
+					cout << "block's content: \n";
+				}
 				for (int i = 0;i < 5;i++) {
 					record = (Record*)address;
-					cout << "tconst values for block are " << record->tconst;
+					if (datablockcount <= 5) {
+						cout << "tconst values for block are " << record->tconst;
+					}
 					if (record->numVotes == x) {
 						totalrating += record->averageRating;
 						numrating++;
@@ -145,9 +149,9 @@ void BPTree::findValue(int x)
 					address = (char*)address + 20;
 				}
 			
-				cout << "cursor size is '\n'" << cursor->size;
+				//cout << "cursor size is '\n'" << cursor->size;
 				if (j == (cursor->size - 1)) {
-					cout << "connecting to new node '\n'";
+					//cout << "connecting to new node '\n'";
 					cursor = cursor->ptr[cursor->size];
 					j = 0;
 					if (cursor->key[j ] != x) {
@@ -170,39 +174,30 @@ void BPTree::findValue(int x)
 				}
 				
 
-			/*	if (j < cursor->size - 1 && cursor->key[j] != x) {
-					cout << cursor->key[j];
-					cout << "debug line 2";
-					flag = false;
-					//print all the stuff
-					break;
-				}*/
-
+	
 
 				
 			
 
-		}
+		}cout << "The total datablock count is: " << datablockcount<<"\n";
+		 cout << "The average value of average rating is " << totalrating/numrating << "\n";
+		
 
 
 
 
 		
-
-		//continuesearch(cursor,datablockcount, totalrating,x,iteration,numrating);
-	}
+	} 
 }
 
 
-#include "bpp.h"
-#include "mem_pool.h"
-
-using namespace std;
 
 // Function to find any element
 // in B+ Tree
 void BPTree::findValuerange(int x,int y)
+
 {
+	int n = x - 1;
 	// Return empty tree
 	if (rootNode == NULL) {
 		cout << "Tree is empty at the moment, please insert keys\n";
@@ -222,7 +217,7 @@ void BPTree::findValuerange(int x,int y)
 
 
 				// If x is less than the key i, it must be in the node in pointer i
-				if (x < cursor->key[i]) {
+				if (n < cursor->key[i]) {
 					cursor = cursor->ptr[i];
 					if (cursor->IS_LEAF != true) {
 						nodecount++;
@@ -271,75 +266,112 @@ void BPTree::findValuerange(int x,int y)
 		int j = 0;
 		bool flag = true;
 
+		/*for (int i = 0;i < cursor->size;i++) {
+				cout << cursor->key[i]<<"\n";
+		}*/
 
-		for (int i = 0;i <= cursor->size;i++) {
-			if ((cursor->key[i] >= x) &&(cursor->key[i]<y)) {// first the first value
+
+
+
+		bool contsearch = true;
+		int i = 0;
+		while (contsearch) {
+			if ((cursor->key[i] >= x) && (cursor->key[i] <= y)) {
 				j = i;
 				flag = true;
+				contsearch = false;
+				for (int i = 0;i < cursor->size;i++) {
+					cout << cursor->key[i] << "\n";
+				}
+
 				break;
 			}
-			else if (i == cursor->size) {
-				cout << "value not found";
+
+
+			
+			else if ((i == cursor->size - 1) && (cursor->key[i] < x)) {
+				cursor = cursor->ptr[cursor->size];
+				i = 0;
+				continue;
+			}
+			else if (cursor->key[i] < x) {
+				i++;
+				continue;
 			}
 
-		}
 
+		}
 
 
 
 		while (flag) {
 
 
+			cout << "j value" << j <<"\n";
 			address = cursor->dbptr[j];
-			cout << "block's content:";
+
+			for (int i = 0;i < cursor->size;i++) {
+				cout << cursor->key[i] << "\n";
+			}
+
+			datablockcount++;
+			if (datablockcount <= 5) {
+				cout << "block's content: \n";
+			}
 			for (int i = 0;i < 5;i++) {
 				record = (Record*)address;
-				cout << record->tconst << "tconst values are \n";
-				if ((record->numVotes >= x) && (record->numVotes <= y)) {
+				if (datablockcount <= 5) {
+					cout << "tconst values for block are " << record->tconst;
+				}
+				if (record->numVotes==cursor->key[i]) {
 					totalrating += record->averageRating;
 					numrating++;
+
 				}
+				cout << '\n';
 				address = (char*)address + 20;
 			}
-			j++;
 
-			if (j == cursor->size ) {
-				cout << "debug line";
+			//cout << "cursor size is '\n'" << cursor->size;
+			if (j == (cursor->size - 1)) {
+				//cout << "connecting to new node '\n'";
 				cursor = cursor->ptr[cursor->size];
 				j = 0;
-
-				if (!(cursor->key[j] >=x) && (!(cursor->key[j] <=y))){
+				if (cursor->key[j] > y || cursor->key[j] < x) {
 					flag = false;
+					break;
 				}
-				break;
-
+				else {
+					continue;
+				}
 			}
 
 
-			else if (j < cursor->size - 1 && !(cursor->key[j] >= x) && (!(cursor->key[j] <= y))) {
-				cout << cursor->key[j];
-				cout << "debug line 2";
+			else if ((j < cursor->size - 1) && cursor->key[j + 1]<=y &&cursor->key[j+1]>=x) {
+				j++;
+			}
+
+			else if (((j < cursor->size - 1) && cursor->key[j + 1] > y ) || ((j < cursor->size - 1) && ( cursor->key[j] < x))){
+				break;
 				flag = false;
-				//print all the stuff
-				break;
 			}
 
 
 
 
 
-		}
+
+
+		}cout << "The total datablock count is: " << datablockcount << "\n";
+		cout << "The average value of average rating is " << totalrating / numrating << "\n";
 
 
 
 
 
 
-		//continuesearch(cursor, datablockcount, totalrating, x, iteration, numrating);
 	}
 }
-
-
 
 
 

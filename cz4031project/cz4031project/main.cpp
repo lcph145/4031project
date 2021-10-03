@@ -57,7 +57,7 @@ int main() {
 
 	/* Experiment 2 */
 	cout << "\n";
-	node.display(node.getRoot());
+	//node.display(node.getRoot());
 	cout << "\nExpt 2 answers " << "\n";
 	cout << "The height of tree is " << node.returnheight() << "\n";
 	cout << "The maximum number of keys that can be stored per node is " << node.returnMax() << "\n";
@@ -80,12 +80,12 @@ int main() {
 
 	/* Experiment 3 */
 	cout << "\nExperiment 3 answers "<<"\n";
-	node.findValue(16);
+	//node.findValue(17);
 
 	
 	/* Experiment 4 */
 	cout << "\nExperiment 4 answers " << "\n";
-	//node.findValuerange(2, 20);
+	node.findValuerange(2, 20);
 
 
 	/* Experiment 5 */
