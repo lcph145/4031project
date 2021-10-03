@@ -24,8 +24,7 @@ BPTree::BPTree()
 }
 
 // Function to find the parent node
-Node* BPTree::searchParent(Node* cursor,
-	Node* childNode)
+Node* BPTree::searchParent(Node* cursor, Node* childNode)
 {
 	Node* parent{};
 

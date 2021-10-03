@@ -80,12 +80,12 @@ int main() {
 
 	/* Experiment 3 */
 	cout << "\nExperiment 3 answers "<<"\n";
-	node.findValue(25);
+	node.findValue(857);
 
 	
 	/* Experiment 4 */
-	//cout << "\nExperiment 4 answers " << "\n";
-	//node.findValuerange(25,55);
+	cout << "\nExperiment 4 answers " << "\n";
+	node.findRange(2,12);
 
 
 	/* Experiment 5 */

@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <fstream>
+#include <iostream>
 
 const int MAX = 5;
 
@@ -33,8 +33,8 @@ public:
 	std::vector<int> returnfirstchild();
 	void findValue(int);
 	void continuesearch(Node* cursor, int datablockcount, float totalrating, int x,int iterator,int numrating );
-	void findValuerange(int x, int y);
-	void continuesearchrange(Node* cursor, int datablockcount, float totalrating, int x, int iteration, int numrating, int y);
+	void findRange(int x, int y);
+	bool continuerange(Node* cursor, int datablockcount, float totalrating, int x, int iteration, int numrating, int y);
 	void rangedSearch(int x, int y);
 	void continueRanged(Node* cursor, int datablockcount, float totalrating, int x, int iterator, int numrating, int y);
 	void insertValue(int, void*);
