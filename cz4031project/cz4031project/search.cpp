@@ -196,7 +196,7 @@ void BPTree::findValue(int x)
 void BPTree::findValuerange(int x,int y)
 
 {
-	int n = x - 1;
+	float m = x - 0.5;
 	// Return empty tree
 	if (rootNode == NULL) {
 		cout << "Tree is empty at the moment, please insert keys\n";
@@ -214,15 +214,12 @@ void BPTree::findValuerange(int x,int y)
 			// Check in the cursor node
 			for (int i = 0; i < cursor->size; i++) {
 
-
 				// If x is less than the key i, it must be in the node in pointer i
-				if (n < cursor->key[i]) {
+				if (m < cursor->key[i]) {
 					cursor = cursor->ptr[i];
 					if (cursor->IS_LEAF != true) {
 						nodecount++;
 					}
-
-
 
 					if ((nodecount <= 5) && (cursor->IS_LEAF != true)) {
 						cout << "\nInternal node #" << nodecount << " accessed is " << cursor->key[0];
@@ -279,15 +276,8 @@ void BPTree::findValuerange(int x,int y)
 				j = i;
 				flag = true;
 				contsearch = false;
-				//for (int i = 0;i < cursor->size;i++) {
-					//cout << cursor->key[i] << "\n";
-			//	}
-
 				break;
-			}
-
-
-			
+			}			
 			else if ((i == cursor->size - 1) && (cursor->key[i] < x)) {
 				cursor = cursor->ptr[cursor->size];
 				i = 0;
@@ -297,17 +287,11 @@ void BPTree::findValuerange(int x,int y)
 				i++;
 				continue;
 			}
-
-
 		}
-
-
-
 		while (flag) {
-
-
 			//cout << "j value" << j <<"\n";
 			address = cursor->dbptr[j];
+			//cout << " and cursor->key[j] is " << cursor->key[j];
 
 		//	for (int i = 0;i < cursor->size;i++) {
 				//cout << cursor->key[i] << "\n";
@@ -319,21 +303,22 @@ void BPTree::findValuerange(int x,int y)
 			}
 			for (int i = 0;i < 5;i++) {
 				record = (Record*)address;
+				//cout << "\n" << record->numVotes << " TESTS " << cursor->key[j] << " and j is " << j;
 				if (datablockcount <= 5) {
 					cout << "\n tconst value for record #" << i+1 << " in the block is " << record->tconst;
 				}
-				if (record->numVotes==cursor->key[i]) {
+				if (record->numVotes==cursor->key[j]) {
+					//cout << "\ntotalrating " << totalrating << " and j is " << j;
 					totalrating += record->averageRating;
 					numrating++;
-
 				}
 				//cout << '\n';
 				address = (char*)address + 20;
 			}
 
-			//cout << "cursor size is '\n'" << cursor->size;
-			if (j == (cursor->size - 1)) {
-				//cout << "connecting to new node '\n'";
+			//cout << "cursor size is " << cursor->size << " and j is " << j;
+			if (j >= (cursor->size - 1)) {
+				cout << "connecting to new node \n";
 				cursor = cursor->ptr[cursor->size];
 				j = 0;
 				if (cursor->key[j] > y || cursor->key[j] < x) {
@@ -345,7 +330,6 @@ void BPTree::findValuerange(int x,int y)
 				}
 			}
 
-
 			else if ((j < cursor->size - 1) && cursor->key[j + 1]<=y &&cursor->key[j+1]>=x) {
 				j++;
 			}
@@ -354,21 +338,8 @@ void BPTree::findValuerange(int x,int y)
 				break;
 				flag = false;
 			}
-
-
-
-
-
-
-
 		}cout << "\n\nThe total datablock count is: " << datablockcount << "\n";
 		cout << "The average rating is " << totalrating / numrating << "\n";
-
-
-
-
-
-
 	}
 }
 
