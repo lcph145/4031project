@@ -321,7 +321,7 @@ void BPTree::findValuerange(int x,int y)
 			for (int i = 0;i < 5;i++) {
 				record = (Record*)address;
 				if (datablockcount <= 5) {
-					cout << "tconst values for block are " << record->tconst;
+					cout << "\n tconst values for block are " << record->tconst;
 				}
 				if (record->numVotes==cursor->key[i]) {
 					totalrating += record->averageRating;
