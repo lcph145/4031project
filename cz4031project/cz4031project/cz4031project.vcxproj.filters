@@ -44,5 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="data.tsv" />
+    <None Include="data2.tsv" />
   </ItemGroup>
 </Project>

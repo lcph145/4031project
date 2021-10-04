@@ -31,6 +31,7 @@
     <ClInclude Include="mem_pool.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="data2.tsv" />
     <None Include="data.tsv" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

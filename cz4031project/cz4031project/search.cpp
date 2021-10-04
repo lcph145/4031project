@@ -64,7 +64,7 @@ void BPTree::findValue(int x)
 				}
 			}
 		}
-		cout << "\n" << "The total number of index nodes/internal nodes(exclusive of root and leaf) accessed is " << nodecount << "\n";
+		cout << "\n" << "The total number of index nodes/internal nodes(exclusive of root and leaf) accessed is " << nodecount;
 
 		// Search for the value in the leaf node reached
 		float totalrating = 0;//sum total rating to find avg later on
@@ -133,12 +133,12 @@ void BPTree::findValue(int x)
 
 				datablockcount++;
 				if (datablockcount <= 5) {
-					cout << "block's content: \n";
+					cout << "\n\n\Datablock #" << datablockcount << "'s content: \n";
 				}
 				for (int i = 0;i < 5;i++) {
 					record = (Record*)address;
 					if (datablockcount <= 5) {
-						cout << "\n tconst values for block are " << record->tconst;
+						cout << "\n tconst value for record #" << i + 1 << " in the block is " << record->tconst;
 					}
 					if (record->numVotes == x) {
 						totalrating += record->averageRating;
@@ -178,8 +178,8 @@ void BPTree::findValue(int x)
 				
 			
 
-		}cout << "The total datablock count is: " << datablockcount<<"\n";
-		 cout << "The average value of average rating is " << totalrating/numrating << "\n";
+		}cout << "\n\nThe total datablock count is: " << datablockcount<<"\n";
+		 cout << "The average rating is " << totalrating/numrating << "\n";
 		
 
 
@@ -253,7 +253,7 @@ void BPTree::findValuerange(int x,int y)
 				}
 			}
 		}
-		cout << "\n" << "The total number of index nodes/internal nodes(exclusive of root and leaf) accessed is " << nodecount << "\n";
+		cout << "\n" << "The total number of index nodes/internal nodes(exclusive of root and leaf) accessed is " << nodecount;
 
 		// Search for the value in the leaf node reached
 		float totalrating = 0;//sum total rating to find avg later on
@@ -315,12 +315,12 @@ void BPTree::findValuerange(int x,int y)
 
 			datablockcount++;
 			if (datablockcount <= 5) {
-				cout << "block's content: \n";
+				cout << "\n\n\Datablock #" << datablockcount << "'s content: \n";
 			}
 			for (int i = 0;i < 5;i++) {
 				record = (Record*)address;
 				if (datablockcount <= 5) {
-					cout << "\n tconst values for block are " << record->tconst;
+					cout << "\n tconst value for record #" << i+1 << " in the block is " << record->tconst;
 				}
 				if (record->numVotes==cursor->key[i]) {
 					totalrating += record->averageRating;
@@ -361,8 +361,8 @@ void BPTree::findValuerange(int x,int y)
 
 
 
-		}cout << "The total datablock count is: " << datablockcount << "\n";
-		cout << "The average value of average rating is " << totalrating / numrating << "\n";
+		}cout << "\n\nThe total datablock count is: " << datablockcount << "\n";
+		cout << "The average rating is " << totalrating / numrating << "\n";
 
 
 
