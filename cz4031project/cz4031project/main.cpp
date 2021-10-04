@@ -25,7 +25,7 @@ int main() {
 		exit(1);   // call system to stop
 	}
 
-	mem_pool mem_obj(100000000, 100); //initialise the mem pool with 100MB and 100 bytes
+	mem_pool mem_obj(100000000, 500); //initialise the mem pool with 100MB and 100 bytes
 
 	cout << "current block size is " << mem_obj.getBlkSize()<<"bytes. \n";
 

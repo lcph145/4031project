@@ -138,14 +138,13 @@ void BPTree::findValue(int x)
 				for (int i = 0;i < 5;i++) {
 					record = (Record*)address;
 					if (datablockcount <= 5) {
-						cout << "tconst values for block are " << record->tconst;
+						cout << "\n tconst values for block are " << record->tconst;
 					}
 					if (record->numVotes == x) {
 						totalrating += record->averageRating;
 						numrating++;
 					
 					}
-					cout << '\n';
 					address = (char*)address + 20;
 				}
 			
