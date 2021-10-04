@@ -43,12 +43,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Project 1 Data - Copy.tsv">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="Project 1 Data.tsv">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="Project 1 Data - Copy2.tsv" />
+    <None Include="data.tsv" />
   </ItemGroup>
 </Project>

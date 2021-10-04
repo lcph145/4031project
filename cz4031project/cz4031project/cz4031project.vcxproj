@@ -31,9 +31,7 @@
     <ClInclude Include="mem_pool.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Project 1 Data - Copy2.tsv" />
-    <None Include="Project 1 Data - Copy.tsv" />
-    <None Include="Project 1 Data.tsv" />
+    <None Include="data.tsv" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

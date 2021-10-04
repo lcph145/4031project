@@ -6,6 +6,7 @@
 #include "mem_pool.h"
 #include "bpp.h"
 
+
 using namespace std;
 
 
@@ -18,26 +19,26 @@ int main() {
 
 	/* Experiment 1 */
 	ifstream inFile;
-	inFile.open("Project 1 Data - Copy.tsv");
+	inFile.open("data.tsv");
 	if (!inFile) {
 		cerr << "Unable to open file";
 		exit(1);   // call system to stop
 	}
 
-	mem_pool mem_obj(10000000, 100);
+	mem_pool mem_obj(100000000, 100); //initialise the mem pool with 100MB and 100 bytes
 
-	cout << mem_obj.getBlkSize() << endl;
+	cout << "current block size is " << mem_obj.getBlkSize()<<"bytes. \n";
 
 	std::string str;
 
-	mem_obj.allocateblock();
+	mem_obj.allocateblock(); 
 	BPTree node;
 	std::getline(inFile, str); //skip first line
 	while (std::getline(inFile, str)) {
 		Record record;
 		istringstream stream(str);
 
-		stream >> record.tconst >> record.averageRating >> record.numVotes;
+		stream >> record.tconst >> record.averageRating >> record.numVotes; //reading each entry in the datafile into structures
 		cout << "tconst " << record.tconst << " has average rating " << record.averageRating << " with numVotes " << record.numVotes << "\n";
 	
 		blockaddress = mem_obj.addRecord(&record, sizeof(record));
@@ -80,12 +81,12 @@ int main() {
 
 	/* Experiment 3 */
 	cout << "\nExperiment 3 answers "<<"\n";
-	//node.findValue(17);
+	node.findValue(500);
 
 	
 	/* Experiment 4 */
 	cout << "\nExperiment 4 answers " << "\n";
-	node.findValuerange(2, 20);
+	node.findValuerange(30000, 40000);
 
 
 	/* Experiment 5 */
@@ -93,8 +94,7 @@ int main() {
 	int output = 1;
 	int delCount = 0;
 	while (output == 1) {
-		// Change this to 1000 for Experiment 5
-		output = node.remove(1645);
+		output = node.remove(1000);
 		delCount++;
 	}
 	delCount--;
@@ -114,11 +114,6 @@ int main() {
 		cout << " " << *i;
 	}
 	cout << " \n ";
-
-	//node.remove(5);
-
-
-
 
 
 	return 0;
