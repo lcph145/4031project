@@ -10,7 +10,7 @@
 using namespace std;
 
 
-int main() {
+void execute(int x, int y) {
 	int numVotes = 0;
 	float averageRating = 0;
 	string tconst = " ";
@@ -19,19 +19,19 @@ int main() {
 
 	/* Experiment 1 */
 	ifstream inFile;
-	inFile.open("data2.tsv");
+	inFile.open("data.tsv");
 	if (!inFile) {
 		cerr << "Unable to open file";
 		exit(1);   // call system to stop
 	}
 
-	mem_pool mem_obj(100000000, 500); //initialise the mem pool with 100MB and 100 bytes
+	mem_pool mem_obj(x, y); //initialise the mem pool with 100MB and 100 bytes
 
-	cout << "current block size is " << mem_obj.getBlkSize()<<"bytes. \n";
+	cout << "current block size is " << mem_obj.getBlkSize() << "bytes. \n";
 
 	std::string str;
 
-	mem_obj.allocateblock(); 
+	mem_obj.allocateblock();
 	BPTree node;
 	std::getline(inFile, str); //skip first line
 	while (std::getline(inFile, str)) {
@@ -40,7 +40,7 @@ int main() {
 
 		stream >> record.tconst >> record.averageRating >> record.numVotes; //reading each entry in the datafile into structures
 		cout << "tconst " << record.tconst << " has average rating " << record.averageRating << " with numVotes " << record.numVotes << "\n";
-	
+
 		blockaddress = mem_obj.addRecord(&record, sizeof(record));
 		node.insertValue(record.numVotes, blockaddress);
 		//cout << blockaddress << "\n";
@@ -61,7 +61,7 @@ int main() {
 	cout << "\n-------------------- Experiment 2 answers --------------------" << "\n\n";
 	cout << "The height of tree is " << node.returnheight() << "\n";
 	cout << "The maximum number of keys that can be stored per node is " << node.returnMax() << "\n";
-	cout << "The number of nodes used is: " << node.countNodes(node.getRoot(), 1)<< "\n";
+	cout << "The number of nodes used is: " << node.countNodes(node.getRoot(), 1) << "\n";
 	cout << "The content of root node is";
 	vec = node.returnRootvalue();
 	reverse(vec.begin(), vec.end());
@@ -81,13 +81,13 @@ int main() {
 
 
 	/* Experiment 3 */
-	cout << "\n-------------------- Experiment 3 answers --------------------"<<"\n";
-	node.findValue(888);
+	cout << "\n-------------------- Experiment 3 answers --------------------" << "\n";
+	node.findValue(500);
 
-	
+
 	/* Experiment 4 */
 	cout << "\n-------------------- Experiment 4 answers --------------------" << "\n";
-	node.findValuerange(652,653);
+	node.findValuerange(30000,40000);
 
 
 	/* Experiment 5 */
@@ -95,7 +95,7 @@ int main() {
 	int output = 1;
 	int delCount = 0;
 	while (output == 1) {
-		output = node.remove(25);
+		output = node.remove(1000);
 		delCount++;
 	}
 	delCount--;
@@ -119,5 +119,21 @@ int main() {
 	cout << " \n ";
 
 
+	return;
+}
+
+int main() {
+	int choice = 0;
+	while (choice != 3) {
+		cout << "\n\nPress 1 to run the project with block size of 100 bytes\nPress 2 to run the project with block size of 500 bytes\nPress 3 to exit\n";
+
+		cin >> choice;
+		if (choice == 1) {
+			execute(100000000, 100);
+		}
+		if (choice == 2) {
+			execute(100000000, 500);
+		}
+	}
 	return 0;
 }
